@@ -10,6 +10,7 @@ var indexRouter = require("./routes/index");
 var picturesRouter = require("./routes/pictures");
 
 var app = express();
+
 const { auth } = require("express-openid-connect");
 
 const config = {
