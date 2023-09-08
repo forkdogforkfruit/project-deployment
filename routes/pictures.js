@@ -37,6 +37,7 @@ router.get("/", requiresAuth(), async function (req, res, next) {
 
 //get individual picture details.
 router.get("/:pictureName", requiresAuth(), async function (req, res, next) {
+  console.log(req.oidc.user);
   let my_file = await s3
     .getObject({
       Bucket: process.env.CYCLIC_BUCKET_NAME,
