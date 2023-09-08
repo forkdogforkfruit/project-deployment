@@ -9,8 +9,14 @@ router.get("/", function (req, res, next) {
   res.render("pictures", { pictures: pictures });
 });
 
+router.get('/:pictureName', function(req, res, next) {
+  res.render('pictureDetails', { picture: req.params.pictureName});
+});
+
 router.post("/", function (req, res, next) {
   console.log(req.files);
+  const file = req.files.file;
+  fs.writeFileSync(path.join(__dirname, "../pictures/", file.name), file.data);
   res.end();
 });
 
