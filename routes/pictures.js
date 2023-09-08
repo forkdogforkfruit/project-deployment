@@ -9,6 +9,7 @@ const { requiresAuth } = require("express-openid-connect");
 
 /* GET pictures listing. */
 router.get("/", requiresAuth(), async function (req, res, next) {
+  console.log(req.oidc.user),
   var params = {
     Bucket: process.env.CYCLIC_BUCKET_NAME,
     Delimiter: "/",
@@ -18,7 +19,6 @@ router.get("/", requiresAuth(), async function (req, res, next) {
   var keys = allObjects?.Contents.map((x) => x.Key);
 
   const pictures = await Promise.all(
-    console.log(req.oidc.user),
     keys.map(async (key) => {
       let my_file = await s3
         .getObject({
