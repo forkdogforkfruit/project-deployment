@@ -5,7 +5,10 @@ var path = require("path");
 
 /* GET home page. */
 router.get("/", function (req, res, next) {
-  res.render("index", { title: "Express" });
+  const pictures = fs
+    .readdirSync(path.join(__dirname, "../pictures/"))
+    .slice(0, 3);
+  res.render("index", { pictures: pictures, title: "Express" });
 });
 
 module.exports = router;
