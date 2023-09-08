@@ -46,7 +46,7 @@ router.get("/:pictureName", requiresAuth(), async function (req, res, next) {
     src: Buffer.from(my_file.Body).toString("base64"),
     name: req.params.pictureName,
   };
-  res.render("pictureDetails", { picture: req.params.pictureName });
+  res.render("pictureDetails", { picture: picture });
 });
 
 router.post("/", requiresAuth(), async function (req, res, next) {
